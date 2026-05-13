@@ -1,0 +1,10 @@
+[Unit]
+Description=RaspDeck Tray Program
+After=graphical-session.target
+
+[Service]
+ExecStart=python3 %h/.local/raspdeck/rd-tray.py
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
