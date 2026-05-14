@@ -2,7 +2,7 @@
 Description=RaspDeck Daemon
 
 [Service]
-ExecStart=/usr/bin/python3 %h/.local/bin/RaspDeck/raspdeck_daemon.py
+ExecStart=/usr/bin/python3 %h/.local/bin/raspdeck/raspdeck_daemon.py
 Restart=on-failure
 
 [Install]

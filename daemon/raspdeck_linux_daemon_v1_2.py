@@ -580,8 +580,11 @@ def dispatch(action: str, display: Display, display_blocks: dict):
         send_media_key(action)
     elif action.startswith("trigger "):
         _dispatch_trigger(action[8:].strip(), display, display_blocks)
+    elif action.startswith("serial="):
+        display._send(action[7:].strip())
     else:
         print(f"Unknown action: {action!r}")
+
 
 
 def _dispatch_trigger(call: str, display: Display, display_blocks: dict):
@@ -693,6 +696,12 @@ def main():
         pass
 
     display.clear()
+    
+    if "LED_COLOR" in settings:
+        display._send(f"led -c {settings['LED_COLOR']}")
+    if "LED_BRIGHT" in settings:
+        display._send(f"led -b {settings['LED_BRIGHT']}")
+
     print(f"RaspDeck connected on {port}.")
     print("Listening for events. Ctrl-C to quit.")
 
